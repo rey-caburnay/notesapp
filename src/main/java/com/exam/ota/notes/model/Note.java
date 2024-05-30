@@ -1,8 +1,12 @@
 package com.exam.ota.notes.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class Note {
     private Long id;
+    @NotBlank(message = "Title is required")
     private String title;
+    @NotBlank(message = "Body is required")
     private String body;
 
     // Constructors, getters, and setters

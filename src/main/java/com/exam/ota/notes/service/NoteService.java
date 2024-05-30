@@ -1,8 +1,9 @@
 package com.exam.ota.notes.service;
 
+import com.exam.ota.notes.exception.NoteRequiredFieldException;
 import com.exam.ota.notes.model.Note;
 import com.exam.ota.notes.repository.NoteRepository;
-import com.example.notes.exception.NoteNotFoundException;
+import com.exam.ota.notes.exception.NoteNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,10 @@ public class NoteService {
     }
 
     public Note createNote(Note note) {
+
+//        validateNote(note);
         return noteRepository.save(note);
+
     }
 
     public Note updateNote(Long id, Note noteDetails) {
@@ -36,6 +40,7 @@ public class NoteService {
         if (note == null) {
             throw new NoteNotFoundException("Note not found with id " + id);
         }
+//        validateNote(noteDetails);
         note.setTitle(noteDetails.getTitle());
         note.setBody(noteDetails.getBody());
         note = noteRepository.save(note);
@@ -46,4 +51,14 @@ public class NoteService {
 //        Note note = findNoteById(id);
         noteRepository.deleteById(id);
     }
+
+//    private void validateNote(Note note) {
+//        if(note == null) throw new NullPointerException();
+//        if(note.getTitle() == null || note.getTitle().isEmpty()) {
+//            throw new NoteRequiredFieldException("note title is required");
+//        }
+//        if(note.getBody() == null || note.getBody().isEmpty()) {
+//            throw new NoteRequiredFieldException("note body is required");
+//        }
+//    }
 }

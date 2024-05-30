@@ -110,4 +110,16 @@ class NoteControllerTest {
 
         verify(noteService, times(1)).deleteNoteById(anyLong());
     }
+
+    @Test
+    void testCreateNote_withMissingFields_shouldReturnBadRequest() throws Exception {
+        String noteJson = "{\"title\":\"\"}"; // Missing title
+
+        mockMvc.perform(post("/notes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(noteJson))
+                .andExpect(status().isBadRequest());
+//                .andExpect(jsonPath("$.title").value("Title is required"));
+//                .andExpect(jsonPath("$.body").value("Body is required"));
+    }
 }
