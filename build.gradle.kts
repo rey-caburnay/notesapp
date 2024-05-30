@@ -17,9 +17,17 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+//	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
+//	implementation ("io.springfox:springfox-swagger-ui:3.0.0")
+	implementation ("org.springdoc:springdoc-openapi-ui:1.6.14")
+	implementation ("org.springdoc:springdoc-openapi-data-rest:1.6.14")
+	implementation ("org.springdoc:springdoc-openapi-webflux-core:1.6.14")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation ("org.mockito:mockito-core:3.6.28")
+	testImplementation ("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
 
 tasks.withType<Test> {

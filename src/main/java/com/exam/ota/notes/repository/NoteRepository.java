@@ -1,6 +1,6 @@
 package com.exam.ota.notes.repository;
 
-import com.example.notes.model.Note;
+import com.exam.ota.notes.model.Note;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

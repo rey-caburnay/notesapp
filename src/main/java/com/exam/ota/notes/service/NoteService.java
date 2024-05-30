@@ -1,7 +1,7 @@
-package com.example.notes.service;
+package com.exam.ota.notes.service;
 
-import com.example.notes.model.Note;
-import com.example.notes.repository.NoteRepository;
+import com.exam.ota.notes.model.Note;
+import com.exam.ota.notes.repository.NoteRepository;
 import com.example.notes.exception.NoteNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,13 +33,17 @@ public class NoteService {
 
     public Note updateNote(Long id, Note noteDetails) {
         Note note = findNoteById(id);
+        if (note == null) {
+            throw new NoteNotFoundException("Note not found with id " + id);
+        }
         note.setTitle(noteDetails.getTitle());
         note.setBody(noteDetails.getBody());
+        note = noteRepository.save(note);
         return note;
     }
 
     public void deleteNoteById(Long id) {
-        Note note = findNoteById(id);
+//        Note note = findNoteById(id);
         noteRepository.deleteById(id);
     }
 }
